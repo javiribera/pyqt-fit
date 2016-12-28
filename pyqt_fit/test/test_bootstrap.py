@@ -129,8 +129,8 @@ class TestBoostrap(object):
         result = bootstrap.bootstrap(fit, self.xdata, self.ydata, CI=CI, extra_attrs=extra_attrs,
                                      eval_points=self.eval_points, repeats=rep,
                                      shuffle_method=shuffle, *args, **kwords)
-        np.testing.assert_array_equal(result.y_est, self.xdata)
-        np.testing.assert_array_equal(result.y_eval, self.eval_points)
+        np.testing.assert_allclose(result.y_est, self.xdata)
+        np.testing.assert_allclose(result.y_eval, self.eval_points)
         assert len(result.CIs) == 1 + len(extra_attrs)
         for ci in result.CIs:
             assert ci.shape[:-1] == (len(CI), 2)
@@ -141,8 +141,7 @@ class TestBoostrap(object):
             assert result.shuffled_ys.shape[-2] in (1, rep)
             assert result.full_results.shape == (rep + 1, len(self.eval_points))
             expected = self.eval_points + np.r_[0:rep:(rep + 1) * 1j][:, np.newaxis]
-            np.testing.assert_array_equal(result.full_results,
-                                          expected)
+            np.testing.assert_allclose(result.full_results, expected)
         other_tests(result)
 
     def iter_simple(self, fit, shuffle, CI, extra_attrs=(),

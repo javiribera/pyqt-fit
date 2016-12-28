@@ -77,7 +77,7 @@ class TestJacobian(object):
 
     def call_prec(self, p, dt=float):
         res = utils.approx_jacobian(np.array([1, 1], dtype=dt), square, 10 ** (-p))
-        np.testing.assert_array_almost_equal(res, 2 * np.eye(2, dtype=res.dtype), p)
+        np.testing.assert_array_almost_equal(res, 2 * np.eye(2, dtype=res.dtype), min(p, 6))
 
     def test_call_prec(self):
         for p in (3, 4, 5, 6, 8):  # Above 8, we hit precision limit of floating point

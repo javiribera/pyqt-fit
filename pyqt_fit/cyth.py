@@ -11,7 +11,7 @@ import numpy
 
 try:
     import pyximport
-    HAS_CYTHON = True
+    HAS_CYTHON = False  #True
 except ImportError:
     HAS_CYTHON = False
 
