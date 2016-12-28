@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from setuptools import setup
-
+from Cython.Build import cythonize
 #from path import path
 
 #with (path(__file__).dirname() / 'pyqt_fit' / 'version.txt').open() as f:
@@ -31,6 +31,7 @@ setup(name='PyQt-Fit',
                                  'math.pxd'
                                  ]
                     },
+      # ext_modules = cythonize("pyqt_fit/*.pyx"),
       scripts=['bin/pyqt_fit1d.py'],
       install_requires=['distribute >=0.6',
                         'numpy >=1.5.0',
